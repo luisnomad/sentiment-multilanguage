@@ -5,7 +5,7 @@ Fork of the Sentiment module, with multi-language support (so far I am translati
 
 Use this command to create more translations of the AFINN.json file (some translations are already included in the afinn folder)
 
- ```node translate.js```
+ ```node translate.js -h```
 
  You will need to obtain keys for the Bing Translator API, here:
  http://www.microsoft.com/en-us/translator/getstarted.aspx
