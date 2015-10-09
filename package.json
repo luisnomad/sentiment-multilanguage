@@ -1,0 +1,24 @@
+{
+  "name": "sentiment-multilanguage",
+  "version": "0.0.1",
+  "description": "Fork of the sentiment module with multilanguage support",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisnomad/sentiment-multilanguage.git"
+  },
+  "keywords": [
+    "sentiment",
+    "analysis",
+    "node"
+  ],
+  "author": "Luis Serrano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luisnomad/sentiment-multilanguage/issues"
+  },
+  "homepage": "https://github.com/luisnomad/sentiment-multilanguage#readme"
+}
