@@ -1,5 +1,5 @@
 # sentiment-multilanguage
-Fork of the Sentiment module, with multi-language support
+Fork of the Sentiment module, with multi-language support (so far I am translating the AFINN file with an utility that I have created), present in this repo.
 
 # AFINN file command-line translator
 
