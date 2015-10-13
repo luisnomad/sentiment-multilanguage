@@ -64,7 +64,7 @@ if (program.setcredentials) {
 } else if (program.codes) {
     var code = program.codes || "1";
     countryLanguage.getLanguageCodes(code, function showCodes(error, result) {
-        var tableRow = {};
+        var tableRow = [];
         for (var code of result)
         {
             // console.log (code);
@@ -75,23 +75,32 @@ if (program.setcredentials) {
                     //console.log (JSON.stringify(language));
                     //console.log("Code '" + code + "' is for the " + language.name + " language, spoken in:");
 
-                    tableRow = [{
-                        countryCode: code,
-                        spoken: ""
-                    }];
-
                     if (language.countries.length > 0) {
                         for (var country of language.countries) {
-                            tableRow[0].spoken = tableRow[0].spoken + country.name + ", ";
+                            tableRow.push ({
+                                countryCode: code,
+                                spoken:  country.name
+                            });
+                            //tableRow[0].spoken = tableRow[0].spoken + country.name + ", ";
                             //console.log ("- " + country.name);
                         }
                     } else {
-                        tableRow[0].spoken = "N/A";
+                        tableRow.push({
+                            countryCode: code,
+                            spoken: "N/A"
+                        });
                     }
+                    tableRow.push({
+                        countryCode: "",
+                        spoken: ""
+                    });
                 }
             });
-            console.table(tableRow);
+
+
         }
+
+        console.table(tableRow);
 
     });
 
