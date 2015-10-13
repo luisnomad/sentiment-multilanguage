@@ -22,7 +22,7 @@ program
     .option('-f, --outputfolder [folder]', "Output folder. Defaults to ./afinn")
     .option('-F, --inputfolder [folder]', "Input folder. Defaults to ./afinn")
     .option('-i, --inputfile [file]', "Input file. Defaults to AFFIN.json")
-    .option('-C, --codes [type]', "Shows valid code languages in selected type: 1 for ISO-639-1 (default), 2 for ISO-639-2 or 3 for ISO-639-3", "1")
+    .option('-C, --codes [type]', "Shows valid code languages in selected type: 1 for ISO-639-1 (default), 2 for ISO-639-2 or 3 for ISO-639-3")
     .parse(process.argv);
 
 /** Setting Credentials **/
@@ -62,33 +62,33 @@ if (program.setcredentials) {
         return 1;
     }
 } else if (program.codes) {
-
-    countryLanguage.getLanguageCodes(program.codes, function showCodes(error, result) {
+    var code = program.codes || "1";
+    countryLanguage.getLanguageCodes(code, function showCodes(error, result) {
         var tableRow = {};
         for (var code of result)
         {
             // console.log (code);
             countryLanguage.getLanguage(code, function (err, language) {
-            if (err) {
-                console.log(err);
-            } else {
-                //console.log (JSON.stringify(language));
-                //console.log("Code '" + code + "' is for the " + language.name + " language, spoken in:");
-
-                tableRow = [{
-                    countryCode: code,
-                    spoken: ""
-                }];
-
-                if (language.countries.length > 0) {
-                    for (var country of language.countries) {
-                        tableRow[0].spoken = tableRow[0].spoken + country.name + ", ";
-                        //console.log ("- " + country.name);
-                    }
+                if (err) {
+                    console.log(err);
                 } else {
-                    tableRow[0].spoken = "N/A";
+                    //console.log (JSON.stringify(language));
+                    //console.log("Code '" + code + "' is for the " + language.name + " language, spoken in:");
+
+                    tableRow = [{
+                        countryCode: code,
+                        spoken: ""
+                    }];
+
+                    if (language.countries.length > 0) {
+                        for (var country of language.countries) {
+                            tableRow[0].spoken = tableRow[0].spoken + country.name + ", ";
+                            //console.log ("- " + country.name);
+                        }
+                    } else {
+                        tableRow[0].spoken = "N/A";
+                    }
                 }
-            }
             });
             console.table(tableRow);
         }
@@ -112,6 +112,6 @@ if (program.setcredentials) {
 
 
 } else {
-    console.log("Please specify an output language.");
+    console.log("Please specify an output language (or -h for help)");
 }
 
