@@ -96,8 +96,6 @@ if (program.setcredentials) {
                     });
                 }
             });
-
-
         }
 
         console.table(tableRow);
